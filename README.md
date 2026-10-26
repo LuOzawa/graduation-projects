@@ -9,6 +9,8 @@
 > 所有项目均为独立完整实现：前后端分离、真实数据库、可运行、含启动脚本与部署说明。
 > 每个仓库结构统一为 `backend/ · frontend/ · sql/ · docs/`，带 MIT License、CI 与 `v1.0.0` 定稿 tag。
 
+**工程质量现状**：16/16 仓库 CI 全绿 · 44 个自动化测试 · 前端依赖漏洞从 ~150 降到 ~43 · Dependabot 漏洞告警全开
+
 ---
 
 ## 一、主推项目（面试重点讲这 4 个）
@@ -111,14 +113,31 @@ docs/              # 启动说明.md · 功能清单.md
 .github/workflows/ # CI：mvn compile + npm build
 ```
 
-- **可复现**：每个仓库 `docs/启动说明.md` 给出环境版本表、导入顺序、环境变量、默认账号
+- **可复现**：每个仓库 `docs/启动说明.md` 给出环境版本表、导入顺序、环境变量、默认账号；Python 依赖全部 `==` 精确锁定
 - **有版本基线**：每个仓库打 `v1.0.0 — 答辩定稿版` tag 与 Release
 - **无密钥泄露**：数据库口令、JWT secret 均为 `${ENV:default}` 形式
+- **CI 全覆盖**：16/16 仓库 GitHub Actions（后端 `mvn test`/`pytest`，前端 `npm ci + build`），日志可查测试通过数
+- **有测试**：44 个自动化测试，聚焦"会出事的地方"（鉴权越权、token 失效、切块覆盖、异常信息泄露、财务算法边界）
+- **依赖安全**：Dependabot 告警全开；前端漏洞经 `npm audit fix` 从 ~150 降至 ~43，剩余均为需 breaking change 的 vite 主版本升级
 
 ---
 
-## 五、待补
+## 五、自动化测试明细（44 个）
+
+| 仓库 | 用例 | 覆盖重点 |
+|---|---|---|
+| study-material-recommender | 10 | JWT 签发/校验、**他人 token 越权拒绝**、过期拒绝、篡改拒绝、弱密钥启动即失败 |
+| family-finance-tracker | 15 | 空数据兜底、聚合正确性、KMeans 样本边界、ARIMA 三级降级、健康评分四维规则 |
+| pf-mdd-yolov8-defect-detection | 9 | 切块数量/尺寸、**全幅覆盖无空隙**、YOLO 框跨块映射、越界框丢弃、结果确定性 |
+| internship-management-system | 5 | 全局异常处理器契约、**500 响应不泄露异常原文** |
+| ai-tutor-miniapp | 5 | 同上 |
+
+全部在 CI 中执行，日志可见 `Tests run: N, Failures: 0` / `N passed`。
+
+## 六、待补
 
 - [ ] 各项目界面截图 / GIF（`docs/screenshots/`）
 - [ ] 面试速查：每个项目的 Q&A（为什么这么设计、如果重做会怎么改）
-- [ ] 是否需要把主推 4 个项目转为 public，供外部访问
+- [x] 主推项目公开：`pf-mdd-yolov8-defect-detection` 已转 public（其余保持 private，可邮件申请只读）
+- [ ] 其余 11 个 Java 仓库补单测（当前仅 3 个有测试）
+- [ ] 抽 `spring-vue-starter` 模板仓库，消除 10 个同构仓库的重复
