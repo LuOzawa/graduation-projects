@@ -138,6 +138,6 @@ docs/              # 启动说明.md · 功能清单.md
 
 - [ ] 各项目界面截图 / GIF（`docs/screenshots/`）
 - [ ] 面试速查：每个项目的 Q&A（为什么这么设计、如果重做会怎么改）
-- [x] 主推项目公开：`pf-mdd-yolov8-defect-detection` 已转 public（其余保持 private，可邮件申请只读）
+- [x] 主推项目公开：`pf-mdd-yolov8-defect-detection`、`study-material-recommender`、`family-finance-tracker`、`gz-student-rental-recsys` 已转 public（其余保持 private，可邮件申请只读）
 - [ ] 其余 11 个 Java 仓库补单测（当前仅 3 个有测试）
 - [ ] 抽 `spring-vue-starter` 模板仓库，消除 10 个同构仓库的重复
