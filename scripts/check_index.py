@@ -29,7 +29,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 README = os.path.join(ROOT, "README.md")
 MANIFEST = os.path.join(ROOT, "projects.json")
 
-LINK_RE = re.compile(r"(🔒 )?\[([A-Za-z0-9._-]+)\]\(https://github\.com/LuOzawa/([A-Za-z0-9._-]+)\)")
+LINK_RE = re.compile(r"((?:🔒\s*)*)\[([A-Za-z0-9._-]+)\]\(https://github\.com/LuOzawa/([A-Za-z0-9._-]+)\)")
 ANY_LINK_RE = re.compile(r"https://github\.com/LuOzawa/([A-Za-z0-9._-]+)")
 
 
@@ -56,7 +56,10 @@ def main() -> int:
     # 1) 链接合法性 + 可见性标记
     seen: set[str] = set()
     for match in LINK_RE.finditer(readme):
-        locked, label, target = match.group(1), match.group(2), match.group(3)
+        locked_raw, label, target = match.group(1), match.group(2), match.group(3)
+        locked = bool(locked_raw.strip())
+        if len(re.findall(r"🔒", locked_raw)) > 1:
+            fail(errors, f"🔒 标记重复：{target}")
         if label != target:
             fail(errors, f"链接文字与仓库名不一致：{label} != {target}")
         if target not in declared:

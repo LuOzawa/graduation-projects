@@ -19,68 +19,21 @@
 
 | 你的目的 | 先看这里 |
 |---|---|
-| 30 秒判断水平 | [精选 5 个主推项目](#一主推项目面试重点讲这-5-个) 的「核心难点 / 工程亮点」两行 |
-| 找对口的仓库 | [能力矩阵](#二能力矩阵) 按方向挑，再看[全部项目卡片](#三全部项目卡片) |
-| 只看能不能跑 | 表里标 🔒 的是私有仓库；未标 🔒 的 5 个（pf-mdd / study-material / family-finance / gz-student-rental / kip-agent / shiji-releases）可直接 clone |
-| 关心工程规范 | [公共工程规范](#四公共工程规范21-个仓库一致) + [测试明细](#五自动化测试明细94-个) |
-| 想让我讲细节 | 每个仓库都有 `docs/` 与启动说明；主推项目还有「可讲点」行（面试 Q&A 提纲） |
+| 30 秒判断水平 | 直接看[二、全部项目卡片](#二全部项目卡片)里的「差异化技术点」列 |
+| 找对口的仓库 | [一、能力矩阵](#一能力矩阵) 按方向挑，再看[二、全部项目卡片](#二全部项目卡片) |
+| 只看能不能跑 | 表里标 🔒 的是私有仓库；未标 🔒 的 6 个（pf-mdd / study-material / family-finance / gz-student-rental / kip-agent / shiji-releases）可直接 clone |
+| 关心工程规范 | [三、公共工程规范](#三公共工程规范21-个仓库一致) + [四、测试明细](#四自动化测试明细94-个) |
+| 想让我讲细节 | 每个仓库都有 `docs/` 与启动说明；[三、公共工程规范](#三公共工程规范21-个仓库一致)与[四、测试明细](#四自动化测试明细94-个)说明质量基线 |
 
 ---
 
-## 一、主推项目（面试重点讲这 5 个）
-
-### 1. 🔒 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) · 本科毕业设计 · 钢材表面缺陷检测
-
-| 项 | 内容 |
-|---|---|
-| 技术栈 | Python / PyTorch / Ultralytics YOLOv8 / SE 通道注意力 / PyQt5 |
-| ★ 指标 | NEU-DET 六类缺陷，mAP@0.5 **0.8107 → 0.8291（+1.8 pt）**，mAP@0.5:0.95 0.4971 → **0.5153** |
-| ★ 核心难点 | **在骨干 SPPF 后插入 SE 模块**（reduction=16，512→32→512）做通道重标定，只加 32 KB 参数（+0.2%）换 1.8 个点；训练 / 评估 / 推理 / PyQt5 界面全流程，已通过答辩 |
-| 可讲点 | 注意力模块插在哪、精度与开销如何权衡、跨设备复现差异 0.3 pt 怎么解释 |
-
-### 2. [study-material-recommender](https://github.com/LuOzawa/study-material-recommender) · 考研资料推荐
-
-| 项 | 内容 |
-|---|---|
-| 技术栈 | Spring Boot 3.2 / Java 17 / Vue 3 / Hadoop 3.3.6 / HDFS / MySQL 8 |
-| ★ 核心难点 | **四路推荐融合**：UserCF + ItemCF + SVD + TF-IDF 加权融合，不依赖第三方推荐库，纯手写实现与调参 |
-| ★ 工程亮点 | HDFS 归档大规模资料；离线评测（留一法 + Precision/Recall/NDCG/覆盖率）；`ProcessBuilder` 夜间定时跑批 |
-| 可讲点 | 冷启动如何缓解、融合权重如何确定、评测指标为什么选 NDCG |
-
-### 3. [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) · 工业缺陷检测
-
-| 项 | 内容 |
-|---|---|
-| 技术栈 | Python / PyTorch / Ultralytics YOLOv8 |
-| ★ 核心难点 | **4096×256 线扫宽幅图的切块（tiling）策略**：直接 resize 会把微小缺陷压没，需要滑窗切块 + 推理结果融合回全图 |
-| ★ 工程亮点 | 12 类缺陷、数据流水线（step0→step10 可复现）、迭代实验追踪、类别稳定性评估、类别不平衡分析报告 |
-| 可讲点 | 切块重叠率怎么定、跨块缺陷如何合并去重、小样本类别的召回怎么提 |
-
-### 4. [family-finance-tracker](https://github.com/LuOzawa/family-finance-tracker) · 家庭理财
-
-| 项 | 内容 |
-|---|---|
-| 技术栈 | Flask / Vue 3 / scikit-learn / statsmodels / MySQL |
-| ★ 核心难点 | **算法与业务真的咬合**：KMeans 消费聚类（自动发现消费模式）+ ARIMA 支出预测 + 四维财务健康评分 |
-| 可讲点 | K 值怎么选、ARIMA 定阶过程、健康评分的权重来源（可解释性） |
-
-### 5. [gz-student-rental-recsys](https://github.com/LuOzawa/gz-student-rental-recsys) · 租房推荐
-
-| 项 | 内容 |
-|---|---|
-| 技术栈 | Spring Boot 3 / Vue 3 / Redis / 高德地图 / MyBatis-Plus |
-| ★ 核心难点 | **协同过滤 + 地理距离的混合召回**：纯 CF 推荐会在"校园附近"这个硬约束上翻车，需引入距离惩罚项 |
-| ★ 工程亮点 | Redis 缓存推荐结果、地图可视化、租房全流程 + 后台管理 |
-
----
-
-## 二、能力矩阵
+## 一、能力矩阵
 
 | 方向 | 项目 | 关键技术 |
 |---|---|---|
 | **AI / Agent** | [kip-agent](https://github.com/LuOzawa/kip-agent) · 🔒 [ai-tutor-miniapp](https://github.com/LuOzawa/ai-tutor-miniapp) | TypeScript 技能体系 / 沙箱 / DeepSeek LLM / 微信小程序 |
 | **低代码 / AI 办公** | 🔒 [feishu-hub](https://github.com/LuOzawa/feishu-hub) | 飞书多维表格 Schema / YAML 工作流编排 / Aily 智能伙伴 / RAG 引用溯源问答 / 权限与审计 |
-| **计算机视觉** | [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) · 🔒 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) | YOLOv8 / tiling 滑窗推理融合 / SE 通道注意力 |
+| **计算机视觉** | [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) · 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) | YOLOv8 / tiling 滑窗推理融合 / SE 通道注意力 |
 | **推荐系统** | [study-material-recommender](https://github.com/LuOzawa/study-material-recommender) · [gz-student-rental-recsys](https://github.com/LuOzawa/gz-student-rental-recsys) | UserCF / ItemCF / SVD / TF-IDF / 混合召回 |
 | **数据分析预测** | 🔒 [boss-zhipin-data-analysis](https://github.com/LuOzawa/boss-zhipin-data-analysis) · [family-finance-tracker](https://github.com/LuOzawa/family-finance-tracker) | Selenium 采集 / KMeans / 线性回归 / ARIMA |
 | **企业级全栈** | 10 个项目（见下表） | Spring Boot + Vue 3 + MyBatis-Plus + JWT/RBAC |
@@ -88,7 +41,7 @@
 
 ---
 
-## 三、全部项目卡片
+## 二、全部项目卡片
 
 ### 企业级全栈（Spring Boot + Vue 3）
 
@@ -110,9 +63,9 @@
 | 项目 | 业务 | 差异化技术点 |
 |---|---|---|
 | 🔒 [boss-zhipin-data-analysis](https://github.com/LuOzawa/boss-zhipin-data-analysis) | 招聘数据洞察 | Django + Selenium 采集；分词词云、KMeans 聚类、回归薪资预测 |
-| [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) | 工业缺陷检测 | 见主推项目 |
-| [family-finance-tracker](https://github.com/LuOzawa/family-finance-tracker) | 家庭理财 | 见主推项目 |
-| 🔒 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) | 钢材表面缺陷检测 | 见主推项目；YOLOv8 + SE 注意力，mAP@0.5 0.8291 |
+| [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) | 工业缺陷检测 | YOLOv8 + 宽幅图切块，12 类缺陷，滑窗推理融合 |
+| [family-finance-tracker](https://github.com/LuOzawa/family-finance-tracker) | 家庭理财 | KMeans 消费聚类 + ARIMA 支出预测 + 四维健康评分 |
+| 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) | 钢材表面缺陷检测 | YOLOv8 + SE 通道注意力，mAP@0.5 0.8291（+1.8 pt） |
 
 ### AI / 小程序 / 产品
 
@@ -126,7 +79,7 @@
 
 ---
 
-## 四、公共工程规范（21 个仓库一致）
+## 三、公共工程规范（21 个仓库一致）
 
 ```text
 README.md          # 架构图 · 目录结构 · 接口一览 · 安全记录 · 已知问题
@@ -148,7 +101,7 @@ docs/              # 启动说明.md · 功能清单.md
 
 ---
 
-## 五、自动化测试明细（94 个）
+## 四、自动化测试明细（94 个）
 
 | 仓库 | 用例 | 覆盖重点 |
 |---|---|---|
@@ -161,7 +114,7 @@ docs/              # 启动说明.md · 功能清单.md
 
 全部在 CI 中执行，日志可见 `Tests run: N, Failures: 0` / `N passed`。
 
-## 六、本索引仓库自身的工程约定
+## 五、本索引仓库自身的工程约定
 
 ```text
 README.md              # 本文件（唯一内容）
@@ -176,11 +129,11 @@ scripts/check_links.py # 相对链接与锚点可达性检查（不联网，避�
 
 ---
 
-## 七、待补
+## 六、待补
 
 - [ ] 各项目界面截图 / GIF（`docs/screenshots/`）
 - [ ] 面试速查：每个项目的 Q&A（为什么这么设计、如果重做会怎么改）
-- [x] 主推项目公开：`pf-mdd-yolov8-defect-detection`、`study-material-recommender`、`family-finance-tracker`、`gz-student-rental-recsys` 已转 public（其余保持 private，可邮件申请只读）
+- [x] 公开仓库：`pf-mdd-yolov8-defect-detection`、`study-material-recommender`、`family-finance-tracker`、`gz-student-rental-recsys`、`kip-agent`、`shiji-releases` 已转 public（其余保持 private，可邮件申请只读）
 - [ ] 其余 11 个 Java 仓库补单测（当前仅 3 个有测试）
 - [ ] 抽 `spring-vue-starter` 模板仓库，消除 10 个同构仓库的重复
 - [ ] feishu-hub：接真实飞书租户验证「Mock 与真实同构」假设；补 90 秒演示录屏
