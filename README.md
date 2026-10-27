@@ -2,7 +2,7 @@
 
 # 毕业设计作品集 · Graduation Projects
 
-**21 个项目** · Spring Boot + Vue 3 全栈 / 计算机视觉 / 推荐系统 / 数据分析 / AI Agent / 低代码 AI 办公
+**22 个项目** · Spring Boot + Vue 3 全栈 / 计算机视觉 / 推荐系统 / 数据分析 / AI Agent / 低代码 AI 办公
 
 </div>
 
@@ -23,7 +23,7 @@
 
 | 方向 | 项目 | 用到的技术 |
 |---|---|---|
-| **AI / Agent** | [kip-agent](https://github.com/LuOzawa/kip-agent) · 🔒 [ai-tutor-miniapp](https://github.com/LuOzawa/ai-tutor-miniapp) | TypeScript 技能体系 / 沙箱 / DeepSeek / 微信小程序 |
+| **AI / Agent** | [kip-agent](https://github.com/LuOzawa/kip-agent) · [langgraph-multi-agent](https://github.com/LuOzawa/langgraph-multi-agent) · 🔒 [ai-tutor-miniapp](https://github.com/LuOzawa/ai-tutor-miniapp) | TypeScript 技能体系 / 沙箱 / DeepSeek / **LangGraph Supervisor 调度 + 审批门 + 检查点** / 微信小程序 |
 | **低代码 / AI 办公** | 🔒 [feishu-hub](https://github.com/LuOzawa/feishu-hub) | 飞书多维表格 / YAML 工作流编排 / Aily 智能伙伴 / RAG 问答 / 权限与审计 |
 | **计算机视觉** | [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) · 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) | YOLOv8 / 宽幅图切块 / 滑窗推理融合 / SE 通道注意力 |
 | **推荐系统** | [study-material-recommender](https://github.com/LuOzawa/study-material-recommender) · [gz-student-rental-recsys](https://github.com/LuOzawa/gz-student-rental-recsys) | UserCF / ItemCF / SVD / TF-IDF / 协同过滤 + 地理距离混合召回 |
@@ -65,6 +65,7 @@
 |---|---|---|
 | 🔒 [ai-tutor-miniapp](https://github.com/LuOzawa/ai-tutor-miniapp) | AI 助教 | uni-app 微信小程序 + Spring Boot 3；DeepSeek 答疑、作业批改、错题本 |
 | [kip-agent](https://github.com/LuOzawa/kip-agent) | 桌面 AI Agent | TypeScript 技能体系、沙箱执行、CI + PR 流程 |
+| [langgraph-multi-agent](https://github.com/LuOzawa/langgraph-multi-agent) | LangGraph 多 Agent 协作框架 | Supervisor 调度专家，专家可带工具；专家级/工具级人工审批、SQLite 检查点断点续跑、失败隔离、上下文 token 裁剪、22 个离线测试 |
 | 🔒 [shiji-website](https://github.com/LuOzawa/shiji-website) | 拾机官网 | Vite + Cloudflare Workers 部署 |
 | [shiji-releases](https://github.com/LuOzawa/shiji-releases) | 拾机版本分发 | Mac 安装包分发仓库 |
 | 🔒 [feishu-hub](https://github.com/LuOzawa/feishu-hub) | 飞书内部办公自动化 | **配置驱动**：9 张多维表格 + 8 条工作流（幂等、退避重试、审计）；**开放平台集成**：token 缓存、频控退避、事件验签，离线 Mock 与真实接口同构；**Aily + RAG**：意图路由、5 个技能、护栏、引用溯源、没有依据就转人工；零第三方依赖内核 + 50 项测试 |
@@ -87,7 +88,7 @@ docs/              # 启动说明.md · 功能清单.md
 - **能照着跑起来**：`docs/启动说明.md` 里写了环境版本、导入顺序、环境变量和默认账号，Python 依赖用 `==` 锁死；
 - **有版本基线**：每个仓库都有 `v1.0.0` tag 和对应的 Release；
 - **不泄密钥**：数据库口令、JWT secret 都是 `${ENV:default}` 这种写法；
-- **CI 都跑着**：21 个仓库都有 GitHub Actions（后端 `mvn test` / `pytest`，前端 `npm ci + build`；`feishu-hub` 跑的是 `doctor + pytest + demo`），日志里能直接看到测试通过数；
+- **CI 都跑着**：22 个仓库都有 GitHub Actions（后端 `mvn test` / `pytest`，前端 `npm ci + build`；`feishu-hub` 跑的是 `doctor + pytest + demo`），日志里能直接看到测试通过数；
 - **依赖有人盯**：Dependabot 全开；前端漏洞从 ~150 降到 ~43，剩下的都是要 breaking change 的 vite 主版本升级。
 
 ## 测试都测些什么
