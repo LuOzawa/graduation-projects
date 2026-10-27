@@ -6,8 +6,10 @@
 
 </div>
 
-> 所有项目均为独立完整实现：前后端分离、真实数据库、可运行、含启动脚本与部署说明。
-> 每个仓库结构统一为 `backend/ · frontend/ · sql/ · docs/`，带 MIT License、CI 与 `v1.0.0` 定稿 tag。
+> 除特别说明外，项目均为独立完整实现：前后端分离、真实数据库、可运行、含启动脚本与部署说明。
+> Java 全栈仓库结构统一为 `backend/ · frontend/ · sql/ · docs/`；
+> Python 项目（`pf-mdd-yolov8-defect-detection` · `feishu-hub`）为 `src/ · tests/ · config/ · docs/`。
+> 每个仓库都带 MIT License、CI 与 `v1.0.0` 定稿 tag。
 
 **工程质量现状**：21/21 仓库 CI 全绿 · 94 个自动化测试 · 前端依赖漏洞从 ~150 降到 ~43 · Dependabot 漏洞告警全开
 
