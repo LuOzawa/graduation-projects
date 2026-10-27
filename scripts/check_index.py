@@ -79,9 +79,9 @@ def main() -> int:
 
     # 3) 数量一致
     referenced = {n for n in ANY_LINK_RE.findall(readme) if n not in ("LuOzawa",)}
-    count_claim = re.search(r"\*\*(\d+) 个项目的索引", readme)
+    count_claim = re.search(r"\*\*(\d+) 个项目", readme)
     if not count_claim:
-        fail(errors, "README 顶部没有声明项目数量（形如「**21 个项目的索引…」）")
+        fail(errors, "README 顶部没有声明项目数量（形如「**21 个项目**」）")
     else:
         claimed = int(count_claim.group(1))
         if claimed != manifest.get("count"):
