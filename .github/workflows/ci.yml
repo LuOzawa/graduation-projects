@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 索引一致性自检（README ↔ projects.json）
+        run: python3 scripts/check_index.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Markdown 规范检查
+        run: |
+          npm install -g markdownlint-cli2
+          markdownlint-cli2 "**/*.md"
+
+      - name: 内部链接可达性（只查相对链接与锚点）
+        run: python3 scripts/check_links.py

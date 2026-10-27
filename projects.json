@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json.schemastore.org/portfolio-manifest.json",
+  "owner": "LuOzawa",
+  "description": "作品集索引的数据源。README 的项目卡片、可见性标记与项目数量都以本文件为准，CI 会校验两者一致。",
+  "count": 21,
+  "projects": [
+    {
+      "name": "steel-surface-defect-detection",
+      "visibility": "private",
+      "category": "计算机视觉",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "YOLOv8",
+        "PyQt5"
+      ],
+      "title": "钢材表面缺陷检测（本科毕业设计）",
+      "highlight": "SE 通道注意力，mAP@0.5 0.8291"
+    },
+    {
+      "name": "pf-mdd-yolov8-defect-detection",
+      "visibility": "public",
+      "category": "计算机视觉",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "YOLOv8"
+      ],
+      "title": "PF-MDD 塑料薄膜多类表面缺陷检测",
+      "highlight": "4096×256 宽幅图切块与滑窗推理融合"
+    },
+    {
+      "name": "study-material-recommender",
+      "visibility": "public",
+      "category": "推荐系统",
+      "stack": [
+        "Spring Boot 3",
+        "Vue 3",
+        "Hadoop",
+        "HDFS"
+      ],
+      "title": "考研参考资料推荐系统",
+      "highlight": "UserCF + ItemCF + SVD + TF-IDF 四路融合"
+    },
+    {
+      "name": "gz-student-rental-recsys",
+      "visibility": "public",
+      "category": "推荐系统",
+      "stack": [
+        "Spring Boot 3",
+        "Vue 3",
+        "Redis",
+        "MyBatis-Plus"
+      ],
+      "title": "广州大学生租房推荐系统",
+      "highlight": "协同过滤 + 地理距离混合召回"
+    },
+    {
+      "name": "family-finance-tracker",
+      "visibility": "public",
+      "category": "数据分析",
+      "stack": [
+        "Flask",
+        "Vue 3",
+        "scikit-learn",
+        "statsmodels"
+      ],
+      "title": "家庭理财记账系统",
+      "highlight": "KMeans 聚类 + ARIMA 预测 + 四维健康评分"
+    },
+    {
+      "name": "boss-zhipin-data-analysis",
+      "visibility": "private",
+      "category": "数据分析",
+      "stack": [
+        "Django",
+        "Selenium",
+        "scikit-learn",
+        "ECharts"
+      ],
+      "title": "Boss直聘招聘数据采集与可视化分析",
+      "highlight": "采集 + 聚类 + 薪资回归"
+    },
+    {
+      "name": "feishu-hub",
+      "visibility": "private",
+      "category": "低代码 / AI 办公",
+      "stack": [
+        "Python",
+        "飞书开放平台",
+        "低代码",
+        "RAG"
+      ],
+      "title": "飞书「智枢」内部办公自动化平台",
+      "highlight": "YAML 声明式低代码 + Aily/RAG 引用溯源问答"
+    },
+    {
+      "name": "kip-agent",
+      "visibility": "public",
+      "category": "AI / Agent",
+      "stack": [
+        "TypeScript",
+        "LLM",
+        "Skills"
+      ],
+      "title": "桌面 AI Agent",
+      "highlight": "技能体系 / 沙箱执行 / CI 与 PR 流程"
+    },
+    {
+      "name": "ai-tutor-miniapp",
+      "visibility": "private",
+      "category": "AI / Agent",
+      "stack": [
+        "uni-app",
+        "Spring Boot 3",
+        "DeepSeek"
+      ],
+      "title": "AI 助教助手",
+      "highlight": "微信登录 / AI 答疑 / 作业批改 / 错题本"
+    },
+    {
+      "name": "shop-platform",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 2.7",
+        "Vue 3"
+      ],
+      "title": "电商平台",
+      "highlight": "订单状态机 / 优惠券 / 支付流程"
+    },
+    {
+      "name": "pharmacy-management",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3",
+        "Vue 3"
+      ],
+      "title": "药店管理系统",
+      "highlight": "库存预警 / 处方登记 / 会员积分"
+    },
+    {
+      "name": "traffic-repair-platform",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3",
+        "Vue 3"
+      ],
+      "title": "交通基础设施报修平台",
+      "highlight": "RBAC 工单流转：报修→审核→派单→维修→验收→申诉"
+    },
+    {
+      "name": "community-suggestion-box",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 2.7",
+        "Vue 3"
+      ],
+      "title": "社区意见箱系统",
+      "highlight": "Spring Security 三端权限隔离"
+    },
+    {
+      "name": "elder-health-management",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3.2",
+        "Vue 3"
+      ],
+      "title": "社区卫生服务中心老年健康管理",
+      "highlight": "ADL-MMSE 量表评估 / 慢病随访 / 预约挂号"
+    },
+    {
+      "name": "pet-center-management",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 2.7",
+        "Vue 3"
+      ],
+      "title": "宠物综合服务中心",
+      "highlight": "Sa-Token 三端隔离 / 寄养 / 套餐 / 商城"
+    },
+    {
+      "name": "liupanshui-tourism",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3.2",
+        "Vue 3"
+      ],
+      "title": "云上凉都·六盘水文化旅游网站",
+      "highlight": "游客端 15 模块 + 后台 13 模块 + ECharts 看板"
+    },
+    {
+      "name": "jiufeng-park-management",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3.3",
+        "Vue 3"
+      ],
+      "title": "鹫峰森林公园管理系统",
+      "highlight": "生态监测阈值告警 / 购票 / 预约"
+    },
+    {
+      "name": "physical-fitness-test-system",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3.4",
+        "Vue 3"
+      ],
+      "title": "高校学生体质测试管理系统",
+      "highlight": "体测申请/审核/成绩录入/统计导出"
+    },
+    {
+      "name": "internship-management-system",
+      "visibility": "private",
+      "category": "企业级全栈",
+      "stack": [
+        "Spring Boot 3",
+        "Vue 3"
+      ],
+      "title": "高校毕业生实习全流程管理系统",
+      "highlight": "双导师审批流 / 周报 / 评价"
+    },
+    {
+      "name": "shiji-website",
+      "visibility": "private",
+      "category": "产品工程",
+      "stack": [
+        "Vite",
+        "Cloudflare Workers"
+      ],
+      "title": "拾机 Shiji 官网",
+      "highlight": "交互展示 / Mac 下载与体验申请"
+    },
+    {
+      "name": "shiji-releases",
+      "visibility": "public",
+      "category": "产品工程",
+      "stack": [],
+      "title": "拾机 Shiji 版本分发仓库",
+      "highlight": "Mac 应用安装包与版本分发"
+    }
+  ]
+}
