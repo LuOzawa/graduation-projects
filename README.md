@@ -27,7 +27,7 @@
 
 ---
 
-## 一、主推项目（面试重点讲这 5 个）
+## 一、主推项目
 
 ### 1. 🔒 🔒 [steel-surface-defect-detection](https://github.com/LuOzawa/steel-surface-defect-detection) · 本科毕业设计 · 钢材表面缺陷检测
 
