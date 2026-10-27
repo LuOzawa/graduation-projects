@@ -2,14 +2,14 @@
 
 # 毕业设计作品集 · Graduation Projects
 
-**16 个项目的索引与技术点速查** — Spring Boot + Vue 3 全栈 / 计算机视觉 / 推荐系统 / 数据分析 / AI Agent
+**17 个项目的索引与技术点速查** — Spring Boot + Vue 3 全栈 / 计算机视觉 / 推荐系统 / 数据分析 / AI Agent / 低代码 AI 办公
 
 </div>
 
 > 所有项目均为独立完整实现：前后端分离、真实数据库、可运行、含启动脚本与部署说明。
 > 每个仓库结构统一为 `backend/ · frontend/ · sql/ · docs/`，带 MIT License、CI 与 `v1.0.0` 定稿 tag。
 
-**工程质量现状**：16/16 仓库 CI 全绿 · 44 个自动化测试 · 前端依赖漏洞从 ~150 降到 ~43 · Dependabot 漏洞告警全开
+**工程质量现状**：17/17 仓库 CI 全绿 · 94 个自动化测试 · 前端依赖漏洞从 ~150 降到 ~43 · Dependabot 漏洞告警全开
 
 ---
 
@@ -56,6 +56,7 @@
 | 方向 | 项目 | 关键技术 |
 |---|---|---|
 | **AI / Agent** | [kip-agent](https://github.com/LuOzawa/kip-agent) · [ai-tutor-miniapp](https://github.com/LuOzawa/ai-tutor-miniapp) | TypeScript 技能体系 / 沙箱 / DeepSeek LLM / 微信小程序 |
+| **低代码 / AI 办公** | [feishu-hub](https://github.com/LuOzawa/feishu-hub) | 飞书多维表格 Schema / YAML 工作流编排 / Aily 智能伙伴 / RAG 引用溯源问答 / 权限与审计 |
 | **计算机视觉** | [pf-mdd-yolov8-defect-detection](https://github.com/LuOzawa/pf-mdd-yolov8-defect-detection) | YOLOv8 / tiling / 滑窗推理融合 |
 | **推荐系统** | [study-material-recommender](https://github.com/LuOzawa/study-material-recommender) · [gz-student-rental-recsys](https://github.com/LuOzawa/gz-student-rental-recsys) | UserCF / ItemCF / SVD / TF-IDF / 混合召回 |
 | **数据分析预测** | [boss-zhipin-data-analysis](https://github.com/LuOzawa/boss-zhipin-data-analysis) · [family-finance-tracker](https://github.com/LuOzawa/family-finance-tracker) | Selenium 采集 / KMeans / 线性回归 / ARIMA |
@@ -97,10 +98,11 @@
 | [kip-agent](https://github.com/LuOzawa/kip-agent) | 桌面 AI Agent | TypeScript 技能体系、沙箱执行、CI + PR 流程 |
 | [shiji-website](https://github.com/LuOzawa/shiji-website) | 产品官网 | Vite + Cloudflare Workers 部署 |
 | [shiji-releases](https://github.com/LuOzawa/shiji-releases) | 版本分发 | Mac 安装包分发仓库 |
+| [feishu-hub](https://github.com/LuOzawa/feishu-hub) | 飞书内部办公自动化 | **YAML 声明式低代码**：9 张多维表格 + 8 条工作流（幂等键/退避重试/审计/递归保护）；**开放平台集成**：token 缓存·频控退避·事件验签，Mock 与真实同构；**Aily + RAG**：意图路由·5 技能·护栏·引用溯源·兜底转人工；零第三方依赖内核 + 50 项测试 |
 
 ---
 
-## 四、公共工程规范（16 个仓库一致）
+## 四、公共工程规范（17 个仓库一致）
 
 ```
 README.md          # 架构图 · 目录结构 · 接口一览 · 安全记录 · 已知问题
@@ -116,13 +118,13 @@ docs/              # 启动说明.md · 功能清单.md
 - **可复现**：每个仓库 `docs/启动说明.md` 给出环境版本表、导入顺序、环境变量、默认账号；Python 依赖全部 `==` 精确锁定
 - **有版本基线**：每个仓库打 `v1.0.0 — 答辩定稿版` tag 与 Release
 - **无密钥泄露**：数据库口令、JWT secret 均为 `${ENV:default}` 形式
-- **CI 全覆盖**：16/16 仓库 GitHub Actions（后端 `mvn test`/`pytest`，前端 `npm ci + build`），日志可查测试通过数
-- **有测试**：44 个自动化测试，聚焦"会出事的地方"（鉴权越权、token 失效、切块覆盖、异常信息泄露、财务算法边界）
+- **CI 全覆盖**：17/17 仓库 GitHub Actions（后端 `mvn test`/`pytest`，前端 `npm ci + build`；feishu-hub 为 `doctor + pytest + demo 冒烟`），日志可查测试通过数
+- **有测试**：94 个自动化测试，聚焦"会出事的地方"（鉴权越权、token 失效、切块覆盖、异常信息泄露、财务算法边界、**工作流幂等/重试/事件验签/RAG 引用兜底**）
 - **依赖安全**：Dependabot 告警全开；前端漏洞经 `npm audit fix` 从 ~150 降至 ~43，剩余均为需 breaking change 的 vite 主版本升级
 
 ---
 
-## 五、自动化测试明细（44 个）
+## 五、自动化测试明细（94 个）
 
 | 仓库 | 用例 | 覆盖重点 |
 |---|---|---|
@@ -131,6 +133,7 @@ docs/              # 启动说明.md · 功能清单.md
 | pf-mdd-yolov8-defect-detection | 9 | 切块数量/尺寸、**全幅覆盖无空隙**、YOLO 框跨块映射、越界框丢弃、结果确定性 |
 | internship-management-system | 5 | 全局异常处理器契约、**500 响应不泄露异常原文** |
 | ai-tutor-miniapp | 5 | 同上 |
+| feishu-hub | 50 | 表达式引擎（中文标识符/错误可诊断）、表格字段校验与公式、工作流**幂等与重试**、开放平台 **token 缓存/频控/事件验签**、**RAG 引用溯源与兜底**、权限行列级过滤 |
 
 全部在 CI 中执行，日志可见 `Tests run: N, Failures: 0` / `N passed`。
 
@@ -141,3 +144,4 @@ docs/              # 启动说明.md · 功能清单.md
 - [x] 主推项目公开：`pf-mdd-yolov8-defect-detection`、`study-material-recommender`、`family-finance-tracker`、`gz-student-rental-recsys` 已转 public（其余保持 private，可邮件申请只读）
 - [ ] 其余 11 个 Java 仓库补单测（当前仅 3 个有测试）
 - [ ] 抽 `spring-vue-starter` 模板仓库，消除 10 个同构仓库的重复
+- [ ] feishu-hub：接真实飞书租户验证「Mock 与真实同构」假设；补 90 秒演示录屏
